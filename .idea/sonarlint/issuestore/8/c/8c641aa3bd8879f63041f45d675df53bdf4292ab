@@ -1,0 +1,5 @@
+
+G
+java:S1602
+",Remove useless curly braces around statement(ú—½¯þÿÿÿÿ
+E	java:S106"+Replace this use of System.out by a logger.(›Ù’»ýÿÿÿÿ
