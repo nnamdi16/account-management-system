@@ -1,7 +1,7 @@
 #Vertex version
 FROM vertx/vertx4
 
-ENV VERTICLE_NAME com.nnamdi.user_service.MainVerticle
+ENV VERTICLE_NAME com.nnamdi.userservice.MainVerticle
 ENV VERTICLE_FILE target/user-service-1.0.0-SNAPSHOT.jar
 
 

@@ -1,6 +1,6 @@
-package com.nnamdi.user_service.user_service;
+package com.nnamdi.userservice.user_service;
 
-import com.nnamdi.user_service.MainVerticle;
+import com.nnamdi.userservice.MainVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.junit5.VertxExtension;
 import io.vertx.junit5.VertxTestContext;
