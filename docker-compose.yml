@@ -21,7 +21,7 @@ services:
     depends_on:
       - sql
     environment:
-      DATABASE_URL: "jdbc:mssql://msql:1433/account-management"
+      DATABASE_URL: "jdbc:sqlserver://sql:1433;databaseName=account-management"
       DATABASE_USER: "sa"
       DATABASE_PASSWORD: "Password123"
     ports:
@@ -35,7 +35,7 @@ services:
     depends_on:
       - sql
     environment:
-      DATABASE_URL: "jdbc:mssql://msql:1433/account-management"
+      DATABASE_URL: "jdbc:sqlserver://sql:1433;databaseName=account-management"
       DATABASE_USER: "sa"
       DATABASE_PASSWORD: "Password123"
     ports:
