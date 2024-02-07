@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      SA_PASSWORD: "Password123"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+      MSSQL_TCP_PORT: 1433
+    ports:
+      - "1433:1433"
+    networks:
+      - backend
+
+  user-service:
+    build:
+      context: ./user-service
+    depends_on:
+      - sql-server
+    environment:
+      DATABASE_URL: "jdbc:sqlserver://sql-server:1433;databaseName=user-service;"
+      DATABASE_USER: "sa"
+      DATABASE_PASSWORD: "Password123"
+    ports:
+      - "8082:8082"
+    networks:
+      - backend
+
+  account-service:
+    build:
+      context: ./account-service
+    depends_on:
+      - sql-server
+    environment:
+      DATABASE_URL: "jdbc:sqlserver://sql-server:1433;databaseName=account-service;"
+      DATABASE_USER: "sa"
+      DATABASE_PASSWORD: "Password123"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
+
