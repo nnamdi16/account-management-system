@@ -1,12 +1,13 @@
 version: '3'
 
 services:
-  sql-server:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+  sql:
+    image: mcr.microsoft.com/azure-sql-edge
     environment:
       SA_PASSWORD: "Password123"
       ACCEPT_EULA: "Y"
-      MSSQL_PID: "Express"
+      MSSQL_PID: "Developer"
+      MSSQL_USER : "SA"
       MSSQL_TCP_PORT: 1433
     ports:
       - "1433:1433"
@@ -16,14 +17,15 @@ services:
   user-service:
     build:
       context: ./user-service
+      dockerfile: Dockerfile
     depends_on:
-      - sql-server
+      - sql
     environment:
-      DATABASE_URL: "jdbc:sqlserver://sql-server:1433;databaseName=user-service;"
+      DATABASE_URL: "jdbc:mssql://msql:1433/account-management"
       DATABASE_USER: "sa"
       DATABASE_PASSWORD: "Password123"
     ports:
-      - "8082:8082"
+      - "8080:8080"
     networks:
       - backend
 
@@ -31,11 +33,13 @@ services:
     build:
       context: ./account-service
     depends_on:
-      - sql-server
+      - sql
     environment:
-      DATABASE_URL: "jdbc:sqlserver://sql-server:1433;databaseName=account-service;"
+      DATABASE_URL: "jdbc:mssql://msql:1433/account-management"
       DATABASE_USER: "sa"
       DATABASE_PASSWORD: "Password123"
+    ports:
+      - "8081:8081"
     networks:
       - backend
 
