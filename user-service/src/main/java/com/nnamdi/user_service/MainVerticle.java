@@ -1,4 +1,4 @@
-package com.nnamdi.account_service;
+package com.nnamdi.user_service;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
@@ -11,10 +11,10 @@ public class MainVerticle extends AbstractVerticle {
       req.response()
         .putHeader("content-type", "text/plain")
         .end("Hello from Vert.x!");
-    }).listen(8888, http -> {
+    }).listen(8082, http -> {
       if (http.succeeded()) {
         startPromise.complete();
-        System.out.println("HTTP server started on port 8888");
+        System.out.println("HTTP server started on port 8082");
       } else {
         startPromise.fail(http.cause());
       }
