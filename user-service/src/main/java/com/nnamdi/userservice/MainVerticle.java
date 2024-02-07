@@ -1,4 +1,4 @@
-package com.nnamdi.user_service;
+package com.nnamdi.userservice;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
